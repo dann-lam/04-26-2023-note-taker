@@ -13,7 +13,7 @@
 
 ## Description
 
-[Visit the Deployed Site]()
+[Visit the Deployed Site](https://dann-lam.github.io/04-26-2023-note-taker/)
 
 This is an app that reads and writes notes to a .json file.
 
