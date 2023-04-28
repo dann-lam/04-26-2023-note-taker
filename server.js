@@ -27,14 +27,14 @@ app.get('/api/notes', (req, res) => {
         if (err) {
             console.error(err)
         } else {
-            console.log("Result is:")
+            // console.log("Result is:")
             // console.log(data);
             result = JSON.parse(data);
             //We must return a promise here or it will not proceed.
             res.json(result);
         }
     })
-    console.log("end of api notes get");
+    // console.log("end of api notes get");
 
     }
     );
