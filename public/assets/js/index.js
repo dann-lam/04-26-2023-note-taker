@@ -4,7 +4,7 @@ let saveNoteBtn;
 let newNoteBtn;
 let noteList;
 
-if (window.location.pathname === '/notes') {
+if (window.location.pathname === '/notes.html') {
   noteTitle = document.querySelector('.note-title');
   noteText = document.querySelector('.note-textarea');
   saveNoteBtn = document.querySelector('.save-note');
@@ -40,7 +40,7 @@ const saveNote = (note) =>
       'Content-Type': 'application/json',
     },
     body: JSON.stringify(note),
-  });
+  },);
 
 const deleteNote = (id) =>
   fetch(`/api/notes/${id}`, {
@@ -52,6 +52,7 @@ const deleteNote = (id) =>
 
 const renderActiveNote = () => {
   hide(saveNoteBtn);
+
 
   if (activeNote.id) {
     noteTitle.setAttribute('readonly', true);
@@ -67,11 +68,14 @@ const renderActiveNote = () => {
 };
 
 const handleNoteSave = () => {
+
   const newNote = {
     title: noteTitle.value,
     text: noteText.value,
   };
+
   saveNote(newNote).then(() => {
+    console.log("Am I getting and rendering noets?");
     getAndRenderNotes();
     renderActiveNote();
   });
@@ -118,8 +122,10 @@ const handleRenderSaveBtn = () => {
 
 // Render the list of note titles
 const renderNoteList = async (notes) => {
+  console.log("I'm rendering the notes list!");
+  console.log(`notes: ${notes}`)
   let jsonNotes = await notes.json();
-  if (window.location.pathname === '/notes') {
+  if (window.location.pathname === '/notes.html') {
     noteList.forEach((el) => (el.innerHTML = ''));
   }
 
@@ -155,17 +161,21 @@ const renderNoteList = async (notes) => {
   };
 
   if (jsonNotes.length === 0) {
+    console.log("Empty length detected");
     noteListItems.push(createLi('No saved Notes', false));
   }
 
   jsonNotes.forEach((note) => {
     const li = createLi(note.title);
+
     li.dataset.note = JSON.stringify(note);
 
     noteListItems.push(li);
+
   });
 
-  if (window.location.pathname === '/notes') {
+console.log(window.location.pathname);
+  if (window.location.pathname === '/notes.html') {
     noteListItems.forEach((note) => noteList[0].append(note));
   }
 };
@@ -173,7 +183,7 @@ const renderNoteList = async (notes) => {
 // Gets notes from the db and renders them to the sidebar
 const getAndRenderNotes = () => getNotes().then(renderNoteList);
 
-if (window.location.pathname === '/notes') {
+if (window.location.pathname === '/notes.html') {
   saveNoteBtn.addEventListener('click', handleNoteSave);
   newNoteBtn.addEventListener('click', handleNewNoteView);
   noteTitle.addEventListener('keyup', handleRenderSaveBtn);
