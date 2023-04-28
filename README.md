@@ -13,7 +13,7 @@
 
 ## Description
 
-[Visit the Deployed Site]()
+[Visit the Deployed Site](https://dann-lam.github.io/04-26-2023-note-taker/)
 
 This is an app that reads and writes notes to a .json file.
 
@@ -37,7 +37,7 @@ To use this project, install node into the server.
 After installing, run node server.js, go to the local host opened port, enter the site, and start making ntoes!
 
 
-![Image of Application](https://raw.githubusercontent.com/dann-lam/04-22-2023-svg-logo-maker/main/emu_preview.gif)
+![Image of Application](https://github.com/dann-lam/04-26-2023-note-taker/blob/main/note_taker.gif)
 
 
 
